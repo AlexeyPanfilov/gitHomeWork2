@@ -16,19 +16,21 @@ public class SalesManager {
         return max;
     }
 
+    public long min() {
+        long min = sales[0];
+        for (long sale : sales) {
+            if (sale < min) {
+                min = sale;
+            }
+        }
+        return min;
+    }
+
     public long cutAverage () {
         long summSales = 0;
-        long maxSales = -1;
-        long minSales = sales[0];
         for (long sale : sales) {
-            if (sale < minSales) {
-                minSales = sale;
-            }
-            if (sale > maxSales) {
-                maxSales = sale;
-            }
             summSales += sale;
         }
-        return (summSales - maxSales - minSales)/(sales.length - 2);
+        return (summSales - max() - min())/(sales.length - 2);
     }
 }
